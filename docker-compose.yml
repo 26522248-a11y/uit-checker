@@ -1,0 +1,18 @@
+services:
+  uit-checker:
+    build: .
+    container_name: uit-checker
+    restart: unless-stopped
+    init: true
+    env_file:
+      - .env
+    environment:
+      TZ: Asia/Ho_Chi_Minh
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
